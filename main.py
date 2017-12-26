@@ -6,9 +6,12 @@ import os
 import requests
 import platform
 
+providers = "http://www.tiny-url.info/open_api.html#provider_list"
 parser = argparse.ArgumentParser(description="Shorten a URL.")
 parser.add_argument('url', metavar='U', help='URL to be shortened')
 parser.add_argument('--apikey', metavar='A', help="Your API Key, if it hasn't already been set", default=None)
+parser.add_argument('--provider', metavar='P',
+                    help="Provider for URL shortening. See options here: {}".format(providers), default="bit_ly")
 args = parser.parse_args()
 
 
@@ -40,7 +43,7 @@ def main():
     request = requests.post("http://tiny-url.info/api/v1/create",
                             {"format": "json",
                              "apikey":args.apikey if SET_API_KEY else os.getenv("short_apikey"),
-                             "provider":"bit_ly",
+                             "provider": args.provider,
                              "url":args.url})
     response = request.json()
     if response["state"] == "error":

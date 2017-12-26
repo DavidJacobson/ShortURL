@@ -21,6 +21,16 @@ python main.py http://YourURLHere.TLD
 http://bit.ly/2BAlDhS
 ```
 
+You can choose which URL shortening service you would like to use with the --provider option.
+
+By default ShortURL will use bit.ly. I would recommend sticking with bit.ly. 
+
+A full list of choices is available [here](http://www.tiny-url.info/open_api.html#provider_list)
+
+```shell
+python main.py http://google.com --provider tiny_cc
+```
+
 If you get an error, your API key has likely expired.
 
 ```shell
